@@ -1,0 +1,37 @@
+<div class="home-cards-grid">
+    @for (card of homeCards; track card.title) {
+    <div class="home-card" [style.background]="card.color" [routerLink]="card.route">
+        <div class="home-icon-container">
+            <mat-icon class="outlined">{{ card.icon }}</mat-icon>
+        </div>
+        <div class="home-content">
+            <div class="home-title">{{ card.title }}</div>
+            <div class="home-description">{{ card.description }}</div>
+        </div>
+        <div class="arrow-icon-container">
+            <mat-icon class="outlined">arrow_forward_ios</mat-icon>
+        </div>
+    </div>
+    }
+
+    <div class="card insights-card">
+        <div class="insights-content">
+            <div class="insights-icon">
+                <mat-icon>moving</mat-icon>
+            </div>
+            <div>
+                <h3>ML Model Insights</h3>
+                <p class="insights-description">
+                    Our machine learning model has analyzed a lot of data including recent form,
+                    head-to-head history, player availability, and home advantage.
+                </p>
+                <div class="insights-badges">
+                    <span class="badge badge-primary">Home Advantage: Strong</span>
+                    <span class="badge badge-tertiary">Recent Form: Excellent</span>
+                    <span class="badge badge-value">Confidence: High</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

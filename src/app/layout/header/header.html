@@ -1,0 +1,15 @@
+<mat-toolbar color="primary" class="header-toolbar">
+    <div class="left-section">
+        <button mat-icon-button (click)="toggleSidenav.emit()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <img src="logo.png" alt="Logo" class="logo">
+        <span class="brand">Betalyze</span>
+    </div>
+
+    <div class="right-section">
+        <button mat-icon-button matBadge='5' matBadgePosition="before" routerLink="/notifications"><mat-icon class="outlined">notifications</mat-icon></button>
+        <button mat-icon-button routerLink="/preferences"><mat-icon class="outlined">settings</mat-icon></button>
+        <button mat-icon-button><mat-icon class="outlined">account_circle</mat-icon></button>
+    </div>
+</mat-toolbar>

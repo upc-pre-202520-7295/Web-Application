@@ -1,0 +1,67 @@
+<div id="favorites-section" class="section">
+    <div class="section-header">
+        <h2>Favorites & Preferences</h2>
+        <p class="section-description"> Manage your favorite teams and customize your experience </p>
+    </div>
+
+    <div>
+        <div>
+            <h3>Your Favorite Teams</h3>
+            <div class="teams-grid">
+                @for (item of favoriteTeams; track $index) {
+                <div class="card team-card favorite">
+                    <div class="team-card-header">
+                        <div class="team-info">
+                            <div class="team-logo favorite">{{ item.name.slice(0, 2).toUpperCase() }}</div>
+                            <div>
+                                <h4>{{item.name}}</h4>
+                                <p class="team-league">{{item.teamLeague}}</p>
+                            </div>
+                        </div>
+                        <button matIconButton class="favorite-btn active" (click)="removeFromFavorites(item)">
+                            <mat-icon>star</mat-icon>
+                        </button>
+                    </div>
+                    <div class="following-indicator">
+                        <mat-icon class="outlined">check</mat-icon>
+                        <span>Following</span>
+                    </div>
+                </div>
+                }
+
+
+            </div>
+        </div>
+
+        <div>
+            <h3>Add More Teams</h3>
+            <div class="teams-grid">
+                @for (item of availableTeams; track $index) {
+                <div class="card team-card">
+                    <div class="team-card-header">
+                        <div class="team-info">
+                            <div class="team-logo">{{ item.name.slice(0, 2).toUpperCase() }}</div>
+                            <div>
+                                <h4>{{item.name}}</h4>
+                                <p class="team-league">{{item.teamLeague}}</p>
+                            </div>
+                        </div>
+                        <button matIconButton class="favorite-btn" (click)="addToFavorites(item)">
+                            <mat-icon class="outlined">star</mat-icon>
+                        </button>
+                    </div>
+                    <button class="btn btn-outline btn-full" (click)="addToFavorites(item)">
+                        <mat-icon class="outlined">add</mat-icon>
+                        Add to Favorites
+                    </button>
+                </div>
+
+                }
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.team-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+}
+
+.team-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.team-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background-color: var(--color-neutral-light);
+    color: var(--color-neutral-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.team-logo.favorite {
+    background-color: var(--color-primary-light);
+    color: var(--color-neutral-white);
+}
+
+.team-league {
+    font-size: 0.875rem;
+    color: var(--color-neutral-dark);
+}
+
+.favorite-btn {
+    color: var(--color-neutral-dark);
+}
+
+.favorite-btn:hover {
+    color: var(--color-secondary-light);
+    background-color: var(--color-primary-lightest);
+}
+
+.favorite-btn.active {
+    color: var(--color-secondary-light);
+}
+
+.following-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--color-secondary-light);
+    font-size: 0.875rem;
+}

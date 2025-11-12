@@ -1,0 +1,20 @@
+.app-container {
+    height: 100vh;
+}
+
+.app-sidenav {
+    width: 256px;
+    background-color: #00164D;
+    /*border-right: 1px solid #ddd;*/
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.content {
+    padding: 16px;    
+}
+
+.app-content {
+    background-color: #F5F5F5;
+}

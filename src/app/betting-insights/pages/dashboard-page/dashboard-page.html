@@ -1,0 +1,50 @@
+<div class="main-content">
+    <div class="content-container">
+        <div id="dashboard-section" class="section active">
+            <div class="section-header">
+                <h2>Match Predictions Dashboard</h2>
+                <p class="section-description">
+                    Machine learning-powered probability analysis for upcoming football matches
+                </p>
+            </div>
+
+            <div class="matches-grid">
+
+                @for (item of dashboardItems; track $index) {
+                <div class="card">
+                    <div class="card-header">
+                        <span class="league-label">{{ item.league }}</span>
+                        <span class="badge badge-value">
+                            <mat-icon class="outlined">moving</mat-icon>
+                            Value Bet
+                        </span>
+                    </div>
+                    <div class="match-info">
+                        <div class="teams-row">
+                            <span class="team-name">{{ item.team1 }}</span>
+                            <span class="vs-label">vs</span>
+                            <span class="team-name">{{ item.team2 }}</span>
+                        </div>
+                        <div class="match-datetime">{{ item.dateTime }}</div>
+                    </div>
+                    <div class="probabilities">
+                        <div class="probability-item">
+                            <div class="probability-value prob-home">{{ item.probHome }}%</div>
+                            <div class="probability-label">Home Win</div>
+                        </div>
+                        <div class="probability-item">
+                            <div class="probability-value prob-draw">{{ item.probDraw }}%</div>
+                            <div class="probability-label">Draw</div>
+                        </div>
+                        <div class="probability-item">
+                            <div class="probability-value prob-away">{{ item.probAway }}%</div>
+                            <div class="probability-label">Away Win</div>
+                        </div>
+                    </div>
+                </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

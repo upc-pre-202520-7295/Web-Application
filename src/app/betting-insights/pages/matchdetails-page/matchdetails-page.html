@@ -1,0 +1,105 @@
+<div id="match-details-section" class="section">
+    <div class="section-header">
+        <h2>Match Details</h2>
+        <p class="section-description">
+            Comprehensive analysis and prediction details for the selected match
+        </p>
+    </div>
+</div>
+
+@if (!selectedMatch) {
+<div class="card empty-state">
+    <mat-icon class="outlined icon-empty">mystery</mat-icon>
+    <h3 class="empty-title">Details Not Available</h3>
+    <p class="empty-description">
+        Please select a match to view its details
+    </p>
+</div>
+
+} @else {
+
+    <div class="card match-details-header">
+    <div class="match-details-badges">
+        <span class="badge badge-primary">{{ selectedMatch.league }}</span>
+        <span class="badge badge-value">
+            <mat-icon>moving</mat-icon>
+            Value Bet
+        </span>
+    </div>
+
+
+    <div class="match-teams">
+        <div class="team-column">
+            <div class="team-logo-large">{{ selectedMatch.team1.slice(0, 2).toUpperCase() }}</div>
+            <h3>{{ selectedMatch.team1 }}</h3>
+            <p class="team-venue">Home</p>
+        </div>
+        <div class="match-center">
+            <div class="match-datetime-large">{{ selectedMatch.dateTime }}</div>
+            <div class="match-time">{{ selectedMatch.hour }}</div>
+        </div>
+        <div class="team-column">
+            <div class="team-logo-large">{{ selectedMatch.team2.slice(0, 2).toUpperCase() }}</div>
+            <h3>{{ selectedMatch.team2 }}</h3>
+            <p class="team-venue">Away</p>
+        </div>
+    </div>
+
+
+    <div class="probabilities large">
+        <div class="probability-item">
+            <div class="probability-value prob-home">{{ selectedMatch.probHome }}%</div>
+            <div class="probability-label">Home Win</div>
+        </div>
+        <div class="probability-item">
+            <div class="probability-value prob-draw">{{ selectedMatch.probDraw }}%</div>
+            <div class="probability-label">Draw</div>
+        </div>
+        <div class="probability-item">
+            <div class="probability-value prob-away">{{ selectedMatch.probAway }}%</div>
+            <div class="probability-label">Away Win</div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Team Statistics</h3>
+    <div class="statistics-list">
+        <div class="statistic-row">
+            <div class="statistic-label"><hr></div>
+            <div class="statistic-comparison">
+                <div>
+                    <div class="stat-value prob-home">Last 5 Meetings: </div>
+                </div>
+                <div class="text-right">
+                    <div class="stat-value prob-away">{{ selectedMatch.last }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="statistic-row">
+            <div class="statistic-label"><hr></div>
+            <div class="statistic-comparison">
+                <div>
+                    <div class="stat-value prob-home">Average Goals: </div>
+                </div>
+                <div class="text-right">
+                    <div class="stat-value prob-away">{{ selectedMatch.averageGoals }} per match</div>
+                </div>
+            </div>
+        </div>
+        <div class="statistic-row">
+            <div class="statistic-label"><hr></div>
+            <div class="statistic-comparison">
+                <div>
+                    <div class="stat-value prob-home">Last Winner: </div>
+                </div>
+                <div class="text-right">
+                    <div class="stat-value prob-away">{{ selectedMatch.team1 }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+}
+

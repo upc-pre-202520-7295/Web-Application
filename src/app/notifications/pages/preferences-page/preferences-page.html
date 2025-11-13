@@ -1,0 +1,26 @@
+<div class="card">
+    <h3>Notification Preferences</h3>
+    <div class="preferences-list">
+        <div class="preference-item">
+            <div>
+                <h4>Match Predictions</h4>
+                <p class="preference-description">Receive predictions for your favorite teams</p>
+            </div>
+            <mat-slide-toggle [(ngModel)]="oneChecked"></mat-slide-toggle>
+        </div>
+        <div class="preference-item">
+            <div>
+                <h4>Value Bet Alerts</h4>
+                <p class="preference-description">Get notified when value bets are detected</p>
+            </div>
+            <mat-slide-toggle [(ngModel)]="twoChecked"></mat-slide-toggle>
+        </div>
+        <div class="preference-item">
+            <div>
+                <h4>Weekly Summary</h4>
+                <p class="preference-description">Receive weekly performance summaries</p>
+            </div>
+            <mat-slide-toggle></mat-slide-toggle>
+        </div>
+    </div>
+</div>

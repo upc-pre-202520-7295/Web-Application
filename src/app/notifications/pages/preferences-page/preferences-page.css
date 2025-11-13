@@ -1,0 +1,25 @@
+.preferences-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.preference-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    background-color: var(--color-background);
+    border-radius: var(--radius-md);
+}
+
+.preference-description {
+    font-size: 0.875rem;
+    color: var(--color-neutral-dark);
+}
+
+/* Toggle Switch */
+.mat-slide-toggle {
+    background-color: var(--color-neutral-medium);
+}

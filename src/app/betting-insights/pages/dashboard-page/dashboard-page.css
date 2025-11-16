@@ -1,0 +1,68 @@
+.matches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+}
+
+.league-label {
+    font-size: 0.875rem;
+    color: var(--color-neutral-dark);
+}
+
+.match-info {
+    margin-bottom: var(--spacing-md);
+}
+
+.teams-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-sm);
+}
+
+.team-name {
+    font-weight: 500;
+    color: var(--color-neutral-darkest);
+}
+
+.vs-label {
+    color: var(--color-neutral-dark);
+    font-size: 0.875rem;
+}
+
+.match-datetime {
+    color: var(--color-neutral-dark);
+    font-size: 0.875rem;
+}
+
+.probabilities {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+}
+
+.probability-item {
+    text-align: center;
+}
+
+.probability-value {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: var(--spacing-xs);
+}
+
+.prob-home { color: var(--color-secondary-light); }
+.prob-draw { color: var(--color-tertiary-light); }
+.prob-away { color: var(--color-primary-light); }
+
+.probability-label {
+    font-size: 0.875rem;
+    color: var(--color-neutral-dark);
+}

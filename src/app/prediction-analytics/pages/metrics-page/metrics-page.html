@@ -1,0 +1,36 @@
+<div id="metrics-section" class="section">
+    <div class="section-header">
+        <h2>Metrics & History</h2>
+        <p class="section-description"> Historical performance data and key statistics for teams </p>
+    </div>
+
+    <div class="card">
+        <h3>Recent Matches</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Home</th>
+                        <th class="text-center">Score</th>
+                        <th class="text-right">Away</th>
+                        <th class="text-center">Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of metricsItems; track $index) {
+                    <tr>
+                        <td class="text-muted">{{item.dateTime}}</td>
+                        <td>{{item.team1}}</td>
+                        <td class="text-center">{{item.score}}</td>
+                        <td class="text-right">{{item.team2}}</td>
+                        <td class="text-center">
+                            <span class="result-badge result-win">{{item.result}}</span>
+                        </td>
+                    </tr>
+                    }                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

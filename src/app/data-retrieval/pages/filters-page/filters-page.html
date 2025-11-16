@@ -1,0 +1,100 @@
+<div id="filters-section" class="section">
+    <div class="section-header">
+        <h2>Filters & Search</h2>
+        <p class="section-description">
+            Find specific matches and teams using advanced filtering options
+        </p>
+    </div>
+
+    <div class="card filter-panel">
+        <div class="filter-group">
+            <label for="search-input" class="filter-label">Search Team</label>
+
+            <mat-form-field appearance="outline" class="search-form">
+                <span matTextPrefix><mat-icon>search</mat-icon></span>
+                <input matInput type="text" placeholder="Enter a team name..." [(ngModel)]="searchTerm"
+                    (input)="applyFilters()" />
+            </mat-form-field>
+        </div>
+
+        <div class="filter-group">
+            <label for="league-select" class="filter-label">League</label>
+            <select id="league-select" class="filter-select" [(ngModel)]="selectedLeague" (change)="applyFilters()">
+                <option value="">Select a league</option>
+                <option value="Champions">Champions</option>
+                <option value="la-liga">La Liga</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="condition-select" class="filter-label">Match Condition</label>
+            <select id="condition-select" class="filter-select" [(ngModel)]="selectedCondition"
+                (change)="applyFilters()">
+                <option value="">Select condition</option>
+                <option value="home">Home</option>
+                <option value="away">Away</option>
+                <option value="neutral">Neutral Venue</option>
+            </select>
+        </div>
+
+        <div class="filter-actions">
+            <button id="apply-filters-btn" class="btn btn-primary" (click)="applyFilters()">
+                <mat-icon class="outlined">filter_alt</mat-icon>
+                Apply Filters
+            </button>
+            <button id="clear-filters-btn" class="btn btn-outline" (click)="clearFilters()">
+                <mat-icon class="outlined">close</mat-icon>
+                Clear Filters
+            </button>
+        </div>
+    </div>
+
+    <div id="active-filters-card" class="card" style="display: none">
+        <h3>Active Filters</h3>
+        <div id="active-filters-container" class="active-filters"></div>
+    </div>
+
+    @if (filteredItems.length === 0) {
+    <div class="card empty-state">
+        <mat-icon class="outlined icon-empty">filter_alt</mat-icon>
+        <h3 class="empty-title">Apply filters to search</h3>
+        <p class="empty-description">Use the filters above to find specific matches and teams</p>
+    </div>
+    }
+</div>
+
+@if (filteredItems.length > 0) {
+<div>
+    <div class="section-result">
+        <h2>Results: {{ filteredItems.length }}</h2>
+    </div>
+
+    @for (item of filteredItems; track item.id) {
+    <div class="card result-card" (click)="gotToDetails(item.id)">
+        <div class="match-details-badges">
+            <span class="badge badge-primary">{{ item.league }}</span>
+            <span class="badge">
+                <mat-icon>arrow_forward_ios</mat-icon>
+            </span>
+        </div>
+
+        <div class="match-teams">
+            <div class="team-column">
+                <div class="team-logo-large">{{ item.team1.slice(0, 2).toUpperCase() }}</div>
+                <h3>{{ item.team1 }}</h3>
+            </div>
+            <div class="match-center">
+                <div class="vs-badge">VS</div>
+                <div class="match-datetime-large">{{ item.dateTime }}</div>
+                <div class="match-time">{{ item.hour }}</div>
+            </div>
+            <div class="team-column">
+                <div class="team-logo-large">{{ item.team2.slice(0, 2).toUpperCase() }}</div>
+                <h3>{{ item.team2 }}</h3>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+}

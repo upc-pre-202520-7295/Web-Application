@@ -1,0 +1,127 @@
+<div id="value-bets-section" class="section">
+    <div class="section-header">
+        <h2>Value Bets</h2>
+        <p class="section-description">
+            Opportunities where our ML model identifies higher probability than
+            bookmaker odds suggest
+        </p>
+    </div>
+    
+    <div class="stats-grid">
+        <div class="card stat-card">
+            <div class="stat-card-content">
+                <div class="stat-icon">
+                    <mat-icon class="outlined">moving</mat-icon>
+                </div>
+                <div>
+                    <div class="stat-label">Active Value Bets</div>
+                    <div class="stat-value">3</div>
+                </div>
+            </div>
+        </div>
+        <div class="card stat-card">
+            <div class="stat-card-content">
+                <div class="stat-icon">
+                    <mat-icon class="outlined">percent</mat-icon>
+                </div>
+                <div>
+                    <div class="stat-label">Avg. Value</div>
+                    <div class="stat-value stat-positive">+11.6%</div>
+                </div>
+            </div>
+        </div>
+        <div class="card stat-card">
+            <div class="stat-card-content">
+                <div class="stat-icon">
+                    <mat-icon class="outlined">target</mat-icon>
+                </div>
+                <div>
+                    <div class="stat-label">High Confidence</div>
+                    <div class="stat-value">1</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="value-bets-list">
+
+        @for (item of valueBetsItems; track $index) {
+        <div class="card value-bet-card">
+            <div class="value-bet-header">
+                <div>
+                    <div class="value-bet-meta">
+                        <span class="league-label">{{ item.league }}</span>
+                        <span class="badge badge-high">{{ item.badge }}</span>
+                    </div>
+                    <h3>{{ item.team1 }} vs {{ item.team2 }}</h3>
+                    <p class="match-datetime">{{ item.dateTime }}</p>
+                </div>
+                <span class="badge badge-value">
+                    <mat-icon class="outlined">moving</mat-icon>
+                    +{{ item.value }}% Value
+                </span>
+            </div>
+            <div class="value-bet-details">
+                <div class="detail-item">
+                    <div class="detail-label">Outcome</div>
+                    <div class="detail-value">{{ item.detailValue }}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Our Probability</div>
+                    <div class="detail-value prob-home">{{ item.probability }}%</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Bookmaker Odds</div>
+                    <div class="detail-value">{{ item.bookmarker }}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Implied Prob.</div>
+                    <div class="detail-value prob-tertiary">{{ item.implied }}%</div>
+                </div>
+            </div>
+        </div>
+        }
+
+
+
+
+        <!--
+        
+        <div class="card value-bet-card">
+            <div class="value-bet-header">
+                <div>
+                    <div class="value-bet-meta">
+                        <span class="league-label">Bundesliga</span>
+                        <span class="badge badge-medium">MEDIUM</span>
+                    </div>
+                    <h3>Bayern Munich vs Borussia Dortmund</h3>
+                    <p class="match-datetime">2025-10-09</p>
+                </div>
+                <span class="badge badge-value">
+                    <mat-icon class="outlined">moving</mat-icon>
+                    +8.8% Value
+                </span>
+            </div>
+            <div class="value-bet-details">
+                <div class="detail-item">
+                    <div class="detail-label">Outcome</div>
+                    <div class="detail-value">Home Win</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Our Probability</div>
+                    <div class="detail-value prob-home">55.8%</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Bookmaker Odds</div>
+                    <div class="detail-value">1.95</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Implied Prob.</div>
+                    <div class="detail-value prob-tertiary">51.3%</div>
+                </div>
+            </div>
+        </div>
+        
+        -->
+    </div>
+</div>

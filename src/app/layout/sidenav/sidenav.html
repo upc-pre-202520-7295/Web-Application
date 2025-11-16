@@ -1,0 +1,17 @@
+<div class="sidebar-nav">
+    <ul class="sidebar-menu">
+        @for (item of menuItems; track item.route) {
+        <li>
+            <a 
+            class="sidebar-item" 
+            [routerLink]="item.route" 
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >
+                <mat-icon class="outlined">{{ item.icon }}</mat-icon>
+                <span>{{ item.label }}</span>
+            </a>
+        </li>
+        }
+    </ul>
+</div>

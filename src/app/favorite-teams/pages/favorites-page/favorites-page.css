@@ -21,20 +21,8 @@
 .team-logo {
     width: 48px;
     height: 48px;
-    border-radius: var(--radius-md);
-    background-color: var(--color-neutral-light);
-    color: var(--color-neutral-dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1rem;
-    flex-shrink: 0;
-}
-
-.team-logo.favorite {
-    background-color: var(--color-primary-light);
-    color: var(--color-neutral-white);
+    border-radius: 50%;
+    object-fit: contain
 }
 
 .team-league {

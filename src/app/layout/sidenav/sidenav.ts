@@ -15,11 +15,11 @@ export class Sidenav {
   menuItems = [
     { label: 'Home', icon: 'home', route: '/home' },
     { label: 'Dashboard', icon: 'dashboard', route: '/dashboard' },
-    { label: 'Value Bets', icon: 'moving', route: '/value-bets' },
-    { label: 'Filters & Search', icon: 'filter_alt', route: '/filters' },
-    { label: 'Metrics & History', icon: 'finance', route: '/metrics' },
+    /*{ label: 'Value Bets', icon: 'moving', route: '/value-bets' },*/
+    /*{ label: 'Filters & Search', icon: 'filter_alt', route: '/filters' },*/
     { label: 'Favorites', icon: 'star', route: '/favorites' },
     { label: 'Match Details', icon: 'description', route: '/match' }
+    /*{ label: 'Metrics & History', icon: 'finance', route: '/metrics' },*/
   ]
 
 }

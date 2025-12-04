@@ -11,7 +11,7 @@
             <label for="search-input" class="filter-label">Search Team</label>
 
             <mat-form-field appearance="outline" class="search-form">
-                <span matTextPrefix><mat-icon>search</mat-icon></span>
+                <span matTextPrefix><mat-icon style="padding-top: 6px;">search</mat-icon></span>
                 <input matInput type="text" placeholder="Enter a team name..." [(ngModel)]="searchTerm"
                     (input)="applyFilters()" />
             </mat-form-field>

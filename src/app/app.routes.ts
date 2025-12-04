@@ -9,7 +9,9 @@ import { HomePage } from './public/pages/home-page/home-page';
 import { PageNotFound } from './public/pages/page-not-found/page-not-found';
 import { NotificationsPage } from './notifications/pages/notifications-page/notifications-page';
 import { PreferencesPage } from './notifications/pages/preferences-page/preferences-page';
-
+import { SignIn } from './iam/pages/sign-in/sign-in';
+import { SignUp } from './iam/pages/sign-up/sign-up';
+import { AuthGuard } from './iam/services/auth.guard';
 
 export const routes: Routes = [
     { path: 'dashboard', component: DashboardPage },
@@ -22,6 +24,8 @@ export const routes: Routes = [
     { path: 'match/:id', component: MatchdetailsPage },
     { path: 'notifications', component: NotificationsPage },
     { path: 'home', component: HomePage },
+    { path: 'sign-in', component: SignIn },
+    { path: 'sign-up', component: SignUp },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: '**', component: PageNotFound,  },
     

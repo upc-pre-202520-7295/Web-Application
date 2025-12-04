@@ -20,7 +20,7 @@
 
     <div class="card match-details-header">
     <div class="match-details-badges">
-        <span class="badge badge-primary">{{ selectedMatch.league }}</span>
+        <span class="badge badge-primary">{{ selectedMatch.match_info.league }}</span>
         <span class="badge badge-value">
             <mat-icon>moving</mat-icon>
             Value Bet
@@ -30,17 +30,17 @@
 
     <div class="match-teams">
         <div class="team-column">
-            <div class="team-logo-large">{{ selectedMatch.team1.slice(0, 2).toUpperCase() }}</div>
-            <h3>{{ selectedMatch.team1 }}</h3>
+            <img class="team-logo-large" [src]="selectedMatch.home_team_image" />
+            <h3>{{ selectedMatch.home_team_name }}</h3>
             <p class="team-venue">Home</p>
         </div>
         <div class="match-center">
-            <div class="match-datetime-large">{{ selectedMatch.dateTime }}</div>
-            <div class="match-time">{{ selectedMatch.hour }}</div>
+            <div class="match-datetime-large">{{ selectedMatch.match_info.date }}</div>
+            <div class="match-time">{{ selectedMatch.match_info.time }}</div>
         </div>
         <div class="team-column">
-            <div class="team-logo-large">{{ selectedMatch.team2.slice(0, 2).toUpperCase() }}</div>
-            <h3>{{ selectedMatch.team2 }}</h3>
+            <img class="team-logo-large" [src]="selectedMatch.away_team_image" />
+            <h3>{{ selectedMatch.away_team_name }}</h3>
             <p class="team-venue">Away</p>
         </div>
     </div>
@@ -48,15 +48,21 @@
 
     <div class="probabilities large">
         <div class="probability-item">
-            <div class="probability-value prob-home">{{ selectedMatch.probHome }}%</div>
+            <div class="probability-value prob-home">
+                {{ (selectedMatch.predictions.result.home_win_prob * 100) | number:'1.0-0' }}%
+            </div>
             <div class="probability-label">Home Win</div>
         </div>
         <div class="probability-item">
-            <div class="probability-value prob-draw">{{ selectedMatch.probDraw }}%</div>
+            <div class="probability-value prob-draw">
+                {{ (selectedMatch.predictions.result.draw_prob * 100) | number:'1.0-0' }}%
+            </div>
             <div class="probability-label">Draw</div>
         </div>
         <div class="probability-item">
-            <div class="probability-value prob-away">{{ selectedMatch.probAway }}%</div>
+            <div class="probability-value prob-away">
+                {{ (selectedMatch.predictions.result.away_win_prob * 100) | number:'1.0-0' }}%
+            </div>
             <div class="probability-label">Away Win</div>
         </div>
     </div>
@@ -69,10 +75,13 @@
             <div class="statistic-label"><hr></div>
             <div class="statistic-comparison">
                 <div>
-                    <div class="stat-value prob-home">Last 5 Meetings: </div>
+                    <div class="stat-value prob-home">Expected Goals</div>
                 </div>
                 <div class="text-right">
-                    <div class="stat-value prob-away">{{ selectedMatch.last }}</div>
+                    <div class="stat-value prob-away">Home: {{ selectedMatch.predictions.goals.home_expected }}</div>
+                </div>
+                <div class="text-right">
+                    <div class="stat-value prob-away">Away: {{ selectedMatch.predictions.goals.away_expected }}</div>
                 </div>
             </div>
         </div>
@@ -80,10 +89,10 @@
             <div class="statistic-label"><hr></div>
             <div class="statistic-comparison">
                 <div>
-                    <div class="stat-value prob-home">Average Goals: </div>
+                    <div class="stat-value prob-home">Total Expected Goals</div>
                 </div>
-                <div class="text-right">
-                    <div class="stat-value prob-away">{{ selectedMatch.averageGoals }} per match</div>
+                <div>
+                    <div class="stat-value prob-home">{{ selectedMatch.predictions.goals.total_expected }}</div>
                 </div>
             </div>
         </div>
@@ -91,10 +100,57 @@
             <div class="statistic-label"><hr></div>
             <div class="statistic-comparison">
                 <div>
-                    <div class="stat-value prob-home">Last Winner: </div>
+                    <div class="stat-value prob-home">Over 2.5 Probability</div>
                 </div>
-                <div class="text-right">
-                    <div class="stat-value prob-away">{{ selectedMatch.team1 }}</div>
+                <div>
+                    <div class="stat-value prob-home">{{ (selectedMatch.predictions.over_under.over_2_5_probability * 100) | number:'1.0-0' }}%</div>
+                </div>
+            </div>
+        </div>
+        <div class="statistic-row">
+            <div class="statistic-label"><hr></div>
+            <div class="statistic-comparison">
+                <div>
+                    <div class="stat-value prob-home">Under 2.5 Probability</div>
+                </div>
+                <div>
+                    <div class="stat-value prob-home">{{ (selectedMatch.predictions.over_under.under_2_5_probability * 100) | number:'1.0-0' }}%</div>
+                </div>
+            </div>
+        </div>
+        <div class="statistic-row">
+            <div class="statistic-label"><hr></div>
+            <div class="statistic-comparison">
+                <div>
+                    <div class="stat-value prob-home">Recommended Bet</div>
+                </div>
+                <div>
+                    <div class="stat-value prob-home">{{ selectedMatch.predictions.over_under.recommendation }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="statistic-row">
+            <div class="statistic-label"><hr></div>
+            <div class="statistic-comparison">
+                <div>
+                    <div class="stat-value prob-home">Both Teams Score</div>
+                </div>
+                <div>
+                    <div class="stat-value prob-home">{{ (selectedMatch.predictions.both_teams_score.probability * 100) | number:'1.0-0' }}%
+        - {{ selectedMatch.predictions.both_teams_score.recommendation }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="statistic-row">
+            <div class="statistic-label"><hr></div>
+            <div class="statistic-comparison">
+                <div>
+                    <div class="stat-value prob-home">Season</div>
+                </div>
+                <div>
+                    <div class="stat-value prob-home">
+                        {{ selectedMatch.match_info.season }}
+                    </div>
                 </div>
             </div>
         </div>

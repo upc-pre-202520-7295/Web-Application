@@ -7,7 +7,7 @@ import { catchError, Observable, retry, throwError } from "rxjs";
 })
 export class BaseService<T> {
 
-  basePath: string = `http://localhost:8093/api/v1`;
+  basePath: string = `http://localhost:8091/api/v1`;
   resourceEndpoint: string = '/resources';
 
   httpOptions = {

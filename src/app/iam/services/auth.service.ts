@@ -17,7 +17,7 @@ export interface AuthResponse {
   providedIn: 'root',
 })
 export class AuthService {
-  private api = 'http://localhost:8093/api/v1/auth';
+  private api = 'http://localhost:8091/api/v1/auth';
 
   private userSubject = new BehaviorSubject<AuthResponse['data'] | null>(null);
   user$ = this.userSubject.asObservable();
@@ -66,5 +66,5 @@ export class AuthService {
     localStorage.removeItem('user');
     this.userSubject.next(null);
   }
-  
+
 }

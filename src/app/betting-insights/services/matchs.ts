@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class MatchsService {
 
-  private baseUrl = 'http://localhost:8093/api/v1/matchs';
+  private baseUrl = 'http://localhost:8091/api/v1/predictions';
 
   constructor(private http: HttpClient) {}
 

@@ -1,0 +1,31 @@
+<div class="register">
+  <form class="custom-form" (ngSubmit)="register()">
+    <h1>Register to Betalyze</h1>
+
+    <input
+      type="text"
+      placeholder="Full Name"
+      [(ngModel)]="fullName"
+      name="fullName"
+      required
+    />
+
+    <input
+      type="email"
+      placeholder="Email"
+      [(ngModel)]="email"
+      name="email"
+      required
+    />
+
+    <input
+      type="password"
+      placeholder="Password"
+      [(ngModel)]="password"
+      name="password"
+      required
+    />
+
+    <button type="submit">Sign Up</button>
+  </form>
+</div>

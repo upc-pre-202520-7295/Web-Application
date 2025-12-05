@@ -1,21 +1,89 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { Router } from '@angular/router';
+import { MatchsService } from '../../services/matchs';
+import { Match } from '../../model/match';
+
 
 @Component({
   selector: 'app-dashboard-page',
-  imports: [MatIconModule, CommonModule],
+  imports: [MatIconModule, CommonModule, MatFormFieldModule, FormsModule, MatInputModule, MatSelectModule, MatButtonModule],
   templateUrl: './dashboard-page.html',
   styleUrl: './dashboard-page.css',
 })
-export class DashboardPage {
+export class DashboardPage implements OnInit {
 
-  dashboardItems = [
-    { "id": 1, league: 'Champions', team1: 'Real Madrid', team2: 'Bayern München', dateTime: '2025-11-23 • 18:30', probHome: '48.6', probDraw: '27.3', probAway: '24.1' },
-    { "id": 2, league: 'Champions', team1: 'Manchester City', team2: 'Inter', dateTime: '2025-12-04 • 21:00', probHome: '52.9', probDraw: '26.8', probAway: '20.3' },
-    { "id": 3, league: 'Champions', team1: 'Arsenal', team2: 'Paris Saint-Germain', dateTime: '2026-01-15 • 20:45', probHome: '41.7', probDraw: '29.6', probAway: '28.7' },
-    { "id": 4, league: 'Champions', team1: 'Barcelona', team2: 'Liverpool', dateTime: '2025-10-28 • 19:00', probHome: '46.4', probDraw: '28.1', probAway: '25.5' },
-    { "id": 5, league: 'Champions', team1: 'Juventus', team2: 'Atletico de Madrid', dateTime: '2026-02-10 • 21:00', probHome: '44.2', probDraw: '31.0', probAway: '24.8' }
-  ]
+  constructor(private router: Router, private matchsService: MatchsService) {}
 
+  allMatches: Match[] = [];
+  dashboardItems: any[] = [];
+
+  searchTerm: string = '';
+  selectedLeague: string = '';
+
+  ngOnInit(): void {
+    this.loadMatches();
+  }
+
+  loadMatches(): void {
+    this.matchsService.getAll().subscribe((resp: any) => {
+
+      this.allMatches = resp.data;
+
+      this.dashboardItems = this.allMatches.map((m) => ({
+        id: crypto.randomUUID(),
+        league: m.match_info.league,
+        team1: m.home_team_name,
+        team2: m.away_team_name,
+        img1: m.home_team_image,
+        img2: m.away_team_image,
+        dateTime: `${m.match_info.date} ${m.match_info.time}`,
+        hour: m.match_info.time.substring(0, 5),
+        probHome: Math.round(m.predictions.result.home_win_prob * 100),
+        probDraw: Math.round(m.predictions.result.draw_prob * 100),
+        probAway: Math.round(m.predictions.result.away_win_prob * 100),
+
+        fullData: m
+      }));
+    });
+  }
+
+  gotToDetails(item: any): void {
+    this.router.navigate(
+      ['/match-details'],
+      { state: { match: item.fullData } }
+    );
+  }
+
+  applyFilters(): void {
+    let filtered = [...this.dashboardItems];
+
+    if (this.searchTerm.trim() !== '') {
+      const term = this.searchTerm.toLowerCase();
+      filtered = filtered.filter(
+        (m) =>
+          m.team1.toLowerCase().includes(term) ||
+          m.team2.toLowerCase().includes(term)
+      );
+    }
+
+    if (this.selectedLeague !== '') {
+      filtered = filtered.filter(
+        (m) =>
+          m.league.toLowerCase().includes(this.selectedLeague.toLowerCase())
+      );
+    }
+
+    this.dashboardItems = filtered;
+  }
+
+  addToFavorites(): void {
+    console.log('Favorito agregado (implementación futura)');
+  }
 }

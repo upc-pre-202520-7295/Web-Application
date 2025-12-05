@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from '@angular/material/divider';
+import { Teams } from '../../services/teams';
 
 @Component({
   selector: 'app-favorites-page',
@@ -10,65 +11,60 @@ import { MatDividerModule } from '@angular/material/divider';
   templateUrl: './favorites-page.html',
   styleUrl: './favorites-page.css',
 })
-export class FavoritesPage {
+export class FavoritesPage implements OnInit{
 
-  favoriteTeams = [
-    { name: 'Real Madrid', teamLeague: 'Champions League' },
-    { name: 'Barcelona', teamLeague: 'Champions League' },
-    { name: 'Atlético de Madrid', teamLeague: 'Champions League' },
-    { name: 'Athletic Club', teamLeague: 'Champions League' },
-    { name: 'Villarreal', teamLeague: 'Champions League' },
-    { name: 'Paris Saint-Germain', teamLeague: 'Champions League' },
-    { name: 'Marseille', teamLeague: 'Champions League' },
-    { name: 'Monaco', teamLeague: 'Champions League' },
-  ]
+  teamsItems: any[] = [];
+  favoriteTeams: any[] = [];
 
-  teamsItems = [
-    { name: 'Real Madrid', teamLeague: 'Champions League' },
-    { name: 'Barcelona', teamLeague: 'Champions League' },
-    { name: 'Atlético de Madrid', teamLeague: 'Champions League' },
-    { name: 'Athletic Club', teamLeague: 'Champions League' },
-    { name: 'Villarreal', teamLeague: 'Champions League' },
-    { name: 'Paris Saint-Germain', teamLeague: 'Champions League' },
-    { name: 'Marseille', teamLeague: 'Champions League' },
-    { name: 'Monaco', teamLeague: 'Champions League' },
-    { name: 'Bayern München', teamLeague: 'Champions League' },
-    { name: 'Bayer Leverkusen', teamLeague: 'Champions League' },
-    { name: 'Eintracht Frankfurt', teamLeague: 'Champions League' },
-    { name: 'Borussia Dortmund', teamLeague: 'Champions League' },
-    { name: 'Liverpool', teamLeague: 'Champions League' },
-    { name: 'Arsenal', teamLeague: 'Champions League' },
-    { name: 'Manchester City', teamLeague: 'Champions League' },
-    { name: 'Chelsea', teamLeague: 'Champions League' },
-    { name: 'Napoli', teamLeague: 'Champions League' },
-    { name: 'Inter', teamLeague: 'Champions League' },
-    { name: 'Atalanta', teamLeague: 'Champions League' },
-    { name: 'Juventus', teamLeague: 'Champions League' },
-    { name: 'PSV Eindhoven', teamLeague: 'Champions League' },
-    { name: 'Ajax', teamLeague: 'Champions League' },
-    { name: 'Sporting CP', teamLeague: 'Champions League' },
-    { name: 'Galatasaray', teamLeague: 'Champions League' },
-    { name: 'Slavia Praha', teamLeague: 'Champions League' }
-  ]
+  constructor(private teamService: Teams) {}
 
-  // Get available teams
+  ngOnInit(): void {
+    this.loadAll();
+  }
+
+  /** Cargar equipos y favoritos */
+  loadAll() {
+    this.getTeams();
+    this.getFavorites();
+  }
+
+  /** Obtener todos los equipos */
+  getTeams(): void {
+    this.teamService.getAll().subscribe((res: any) => {
+      this.teamsItems = res.data ?? res;
+      console.log("Equipos disponibles:", this.teamsItems);
+    });
+  }
+
+  /** Obtener favoritos del usuario */
+  getFavorites(): void {
+    this.teamService.getFavorites().subscribe((res: any) => {
+      this.favoriteTeams = res.data;
+      console.log("Equipos favoritos:", this.favoriteTeams);
+    });
+  }
+
+  /** Equipos disponibles que no son favoritos */
   get availableTeams() {
     return this.teamsItems.filter(
-      team => !this.favoriteTeams.some(fav => fav.name === team.name)
-    )
+      t => !this.favoriteTeams.some(f => f.teamId === t.id)
+    );
   }
 
-  // Add favorite teams
-  addToFavorites(team: { name: string; teamLeague: string }) {
-    if (!this.favoriteTeams.some(fav => fav.name === team.name)) {
-      this.favoriteTeams.push(team);
-    }
-    console.log(this.availableTeams)
+  /** AGREGAR favorito */
+  addToFavorites(team: any) {
+    this.teamService.addFavorite(team.id).subscribe(() => {
+      console.log("Favorito agregado");
+      this.getFavorites();
+    });
   }
 
-  // Delete from favorites
-  removeFromFavorites(team: { name: string; teamLeague: string }) {
-    this.favoriteTeams = this.favoriteTeams.filter(fav => fav.name !== team.name)
+  /** REMOVER favorito */
+  removeFromFavorites(item: any) {
+    this.teamService.removeFavorite(item.teamId).subscribe(() => {
+      console.log("Favorito eliminado");
+      this.getFavorites();
+    });
   }
 
 }

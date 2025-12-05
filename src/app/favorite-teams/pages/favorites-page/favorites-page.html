@@ -12,10 +12,9 @@
                 <div class="card team-card favorite">
                     <div class="team-card-header">
                         <div class="team-info">
-                            <div class="team-logo favorite">{{ item.name.slice(0, 2).toUpperCase() }}</div>
+                            <img class="team-logo" [src]="item.teamImageUrl" [alt]="item.teamName" />
                             <div>
-                                <h4>{{item.name}}</h4>
-                                <p class="team-league">{{item.teamLeague}}</p>
+                                <h4>{{item.teamName}}</h4>
                             </div>
                         </div>
                         <button matIconButton class="favorite-btn active" (click)="removeFromFavorites(item)">
@@ -40,7 +39,7 @@
                 <div class="card team-card">
                     <div class="team-card-header">
                         <div class="team-info">
-                            <div class="team-logo">{{ item.name.slice(0, 2).toUpperCase() }}</div>
+                            <img class="team-logo" [src]="item.imgUrl" [alt]="item.teamName" />
                             <div>
                                 <h4>{{item.name}}</h4>
                                 <p class="team-league">{{item.teamLeague}}</p>

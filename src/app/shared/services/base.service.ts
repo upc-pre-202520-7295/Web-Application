@@ -7,7 +7,7 @@ import { catchError, Observable, retry, throwError } from "rxjs";
 })
 export class BaseService<T> {
 
-  basePath: string = `https://localhost:8080`;
+  basePath: string = `https://betalyze-tf-cjgafndmb4e4d7fx.westindia-01.azurewebsites.net/api/v1`;
   resourceEndpoint: string = '/resources';
 
   httpOptions = {

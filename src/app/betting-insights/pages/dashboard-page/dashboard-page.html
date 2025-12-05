@@ -8,39 +8,78 @@
                 </p>
             </div>
 
+            <div class="filter-group">
+                <label for="search-input" class="filter-label">Search by Team</label>
+                
+                <mat-form-field appearance="outline" class="search-form">
+                    <span matTextPrefix><mat-icon style="padding-top: 6px;">search</mat-icon></span>
+                    <input matInput type="text" placeholder="Enter a team name..." [(ngModel)]="searchTerm"
+                    (input)="applyFilters()" />
+                </mat-form-field>
+            </div>
+            
+            <div class="filter-group-select">
+                <label for="league-select" class="filter-label">League</label>
+                <select id="league-select" class="filter-select" [(ngModel)]="selectedLeague" (change)="applyFilters()">
+                    <option value="">Select a league</option>
+                    <option value="Champions">Champions</option>
+                    <option value="la-liga">La Liga</option>
+                </select>
+            </div>
+
             <div class="matches-grid">
 
-                @for (item of dashboardItems; track $index) {
+                @for (match of dashboardItems; track $index) {
                 <div class="card">
-                    <div class="card-header">
-                        <span class="league-label">{{ item.league }}</span>
+                    
+                    <div class="value-bet-header">
+                        <div>
+                            <div class="value-bet-meta">
+                                <span class="league-label">{{ match.league }}</span>
+                                <span class="badge badge-high">High</span>
+                            </div>                            
+                        </div>
                         <span class="badge badge-value">
                             <mat-icon class="outlined">moving</mat-icon>
-                            Value Bet
+                            + percentaje % Value
                         </span>
                     </div>
+
                     <div class="match-info">
                         <div class="teams-row">
-                            <span class="team-name">{{ item.team1 }}</span>
+                            <button matIconButton class="favorite-btn" (click)="addToFavorites()">
+                                <mat-icon>star</mat-icon>
+                            </button>
+                            <span class="team-name">{{ match.team1 }}</span>
                             <span class="vs-label">vs</span>
-                            <span class="team-name">{{ item.team2 }}</span>
+                            <span class="team-name">{{ match.team2 }}</span>
+                            <button matIconButton class="favorite-btn" (click)="addToFavorites()">
+                                <mat-icon>star</mat-icon>
+                            </button>
                         </div>
-                        <div class="match-datetime">{{ item.dateTime }}</div>
+                        <div class="match-datetime">{{ match.dateTime }}</div>
                     </div>
                     <div class="probabilities">
                         <div class="probability-item">
-                            <div class="probability-value prob-home">{{ item.probHome }}%</div>
-                            <div class="probability-label">Home Win</div>
+                            <div class="probability-value prob-home">{{ match.probHome }}%</div>
+                            <div class="probability-label">Home</div>
                         </div>
                         <div class="probability-item">
-                            <div class="probability-value prob-draw">{{ item.probDraw }}%</div>
+                            <div class="probability-value prob-draw">{{ match.probDraw }}%</div>
                             <div class="probability-label">Draw</div>
                         </div>
                         <div class="probability-item">
-                            <div class="probability-value prob-away">{{ item.probAway }}%</div>
-                            <div class="probability-label">Away Win</div>
+                            <div class="probability-value prob-away">{{ match.probAway }}%</div>
+                            <div class="probability-label">Away</div>
                         </div>
                     </div>
+
+                    <br>
+                    <button class="btn btn-outline btn-full" (click)="gotToDetails(match)">
+                        <mat-icon class="outlined">add</mat-icon>
+                        See More Details
+                    </button>
+                    
                 </div>
                 }
 

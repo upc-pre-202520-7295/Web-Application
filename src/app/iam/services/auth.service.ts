@@ -17,7 +17,7 @@ export interface AuthResponse {
   providedIn: 'root',
 })
 export class AuthService {
-  private api = 'http://localhost:8091/api/v1/auth';
+  private api = 'https://betalyze-tf-cjgafndmb4e4d7fx.westindia-01.azurewebsites.net/api/v1/auth';
 
   private userSubject = new BehaviorSubject<AuthResponse['data'] | null>(null);
   user$ = this.userSubject.asObservable();

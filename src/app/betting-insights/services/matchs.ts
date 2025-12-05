@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class MatchsService {
 
-  private baseUrl = 'http://localhost:8091/api/v1/predictions';
+  private baseUrl = 'https://betalyze-tf-cjgafndmb4e4d7fx.westindia-01.azurewebsites.net/api/v1/predictions';
 
   constructor(private http: HttpClient) {}
 
